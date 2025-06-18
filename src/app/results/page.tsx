@@ -380,7 +380,9 @@ export default function Results() {
                               <td className="text-center">
                                 <div className="flex flex-col items-center gap-1">
                                   <span className="text-lg">
-                                    {row.direction === "Bot better" ? "🤖" : "👨"}
+                                    {row.direction === "Bot better"
+                                      ? "🤖"
+                                      : "👨"}
                                   </span>
                                   <span
                                     className={`text-xs sm:text-sm ${
@@ -451,8 +453,8 @@ export default function Results() {
                       <strong>Note:</strong> Lower Brier scores indicate better
                       forecasting accuracy. Green differences show DelPy (our
                       AI) outperforming top human superforecasters, red shows
-                      humans performing better. Highlighted rows indicate
-                      statistically significant results.
+                      humans performing better. Rows with check indicate
+                      statistically significant results (p=0.05).
                     </p>
                   </div>
                 </div>
