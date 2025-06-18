@@ -23,7 +23,7 @@ export default function Header() {
         <Link href="/" className="btn btn-ghost">
           Home
         </Link>
-        <Link href="/results" className="btn btn-ghost">
+        <Link href="/results" className="btn btn-ghost hidden sm:flex">
           Results &amp; Methodology
         </Link>
       </div>

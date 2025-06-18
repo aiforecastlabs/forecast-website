@@ -153,9 +153,58 @@ export default function Results() {
       {/* Navigation */}
       <Header />
 
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row">
         {/* Table of Contents Sidebar */}
-        <div className="hidden lg:block w-64 bg-base-200/30">
+        <div className="lg:hidden bg-base-200/30 p-4">
+          <details className="collapse collapse-arrow">
+            <summary className="collapse-title text-lg font-semibold">
+              Contents
+            </summary>
+            <div className="collapse-content">
+              <ul className="space-y-2 mt-2">
+                <li>
+                  <button
+                    onClick={() => scrollToSection("methodology")}
+                    className={`text-left w-full p-2 rounded hover:bg-base-300 transition-colors ${
+                      activeSection === "methodology"
+                        ? "bg-base-300 text-primary"
+                        : ""
+                    }`}
+                  >
+                    Methodology
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("results")}
+                    className={`text-left w-full p-2 rounded hover:bg-base-300 transition-colors ${
+                      activeSection === "results"
+                        ? "bg-base-300 text-primary"
+                        : ""
+                    }`}
+                  >
+                    Full Results
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("contact")}
+                    className={`text-left w-full p-2 rounded hover:bg-base-300 transition-colors ${
+                      activeSection === "contact"
+                        ? "bg-base-300 text-primary"
+                        : ""
+                    }`}
+                  >
+                    Contact
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        {/* Desktop Table of Contents Sidebar */}
+        <div className="hidden lg:block w-64 bg-base-200/30 flex-shrink-0">
           <div className="sticky top-20 p-6 pt-12">
             <h3 className="text-lg font-semibold mb-4">Contents</h3>
             <ul className="space-y-2">
@@ -202,13 +251,13 @@ export default function Results() {
         {/* Main Content */}
         <div className="flex-1">
           {/* Page Header */}
-          <div className="hero py-16 sm:py-24">
+          <div className="hero py-12 sm:py-16 lg:py-24">
             <div className="hero-content text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div>
-                <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
                   Transparency in Forecasting
                 </h1>
-                <p className="text-lg text-base-content/70 max-w-3xl mx-auto">
+                <p className="text-sm sm:text-base lg:text-lg text-base-content/70 max-w-3xl mx-auto leading-relaxed">
                   A detailed breakdown of our experimental methodology and
                   comprehensive results comparing AI forecasters against top
                   human superforecasters across multiple prediction markets and
@@ -219,14 +268,14 @@ export default function Results() {
           </div>
 
           {/* Methodology Section */}
-          <div id="methodology" className="py-16 sm:py-24">
+          <div id="methodology" className="py-12 sm:py-16 lg:py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="card bg-base-200 shadow-xl">
-                <div className="card-body">
-                  <h3 className="card-title text-2xl font-semibold mb-6">
+                <div className="card-body p-6 sm:p-8">
+                  <h3 className="card-title text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
                     Our Experimental Framework
                   </h3>
-                  <p className="text-lg text-base-content/70 mb-6">
+                  <p className="text-sm sm:text-base lg:text-lg text-base-content/70 mb-4 sm:mb-6 leading-relaxed">
                     Our methodology is based on rigorous experimental design
                     principles, following the framework established by{" "}
                     <a
@@ -240,7 +289,7 @@ export default function Results() {
                     . We ensure fair comparison between human and AI forecasters
                     through careful experimental controls.
                   </p>
-                  <ul className="list-disc list-inside space-y-3 text-base-content/70">
+                  <ul className="list-disc list-inside space-y-2 sm:space-y-3 text-sm sm:text-base text-base-content/70">
                     <li>
                       <strong>Questions:</strong> We use standardized
                       forecasting questions from established benchmarks to
@@ -270,99 +319,127 @@ export default function Results() {
           <div id="results" className="py-16 sm:py-24 bg-base-200/30">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="card bg-base-200 shadow-xl">
-                <div className="card-body">
-                  <h3 className="card-title text-2xl font-semibold mb-6">
+                <div className="card-body p-4 sm:p-6 lg:p-8">
+                  <h3 className="card-title text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
                     Full Brier Score Comparison
                   </h3>
-                  <div className="overflow-x-auto">
-                    <table className="table table-zebra w-full">
-                      <thead>
-                        <tr>
-                          <th className="font-bold">Source</th>
-                          <th className="font-bold">Questions</th>
-                          <th className="font-bold">Human Mean</th>
-                          <th className="font-bold">DelPy Mean</th>
-                          <th className="font-bold">Difference</th>
-                          <th className="font-bold">P-Value (Bootstrap)</th>
-                          <th className="font-bold">P-Value (M-W)</th>
-                          <th className="font-bold">Significant</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {resultsData.map((row, index) => (
-                          <tr
-                            key={index}
-                            className={row.significant ? "active" : ""}
-                          >
-                            <td className="font-medium">
-                              <div>
-                                <div className="font-semibold">
-                                  {row.source_name}
-                                </div>
-                                <div className="text-sm text-base-content/60">
-                                  <a
-                                    href={`https://${row.source_url}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="link link-primary hover:link-hover"
-                                  >
-                                    {row.source_url}
-                                  </a>
-                                </div>
-                              </div>
-                            </td>
-                            <td>{row.human_count}</td>
-                            <td>{row.human_mean.toFixed(4)}</td>
-                            <td>{row.bot_mean.toFixed(4)}</td>
-                            <td
-                              className={
-                                row.direction === "Bot better"
-                                  ? "text-success"
-                                  : "text-error"
-                              }
-                            >
-                              {row.difference > 0 ? "+" : ""}
-                              {row.difference.toFixed(4)}
-                            </td>
-                            <td>{row.bootstrap_p.toFixed(4)}</td>
-                            <td>{row.mann_whitney_p.toFixed(4)}</td>
-                            <td>
-                              {row.significant ? (
-                                <svg
-                                  className="w-5 h-5 text-success"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M5 13l4 4L19 7"
-                                  ></path>
-                                </svg>
-                              ) : (
-                                <svg
-                                  className="w-5 h-5 text-error"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                  ></path>
-                                </svg>
-                              )}
-                            </td>
+                  <div className="overflow-x-auto -mx-4 sm:mx-0">
+                    <div className="inline-block min-w-full align-middle">
+                      <table className="table table-zebra w-full min-w-[800px]">
+                        <thead>
+                          <tr>
+                            <th className="font-bold text-xs sm:text-sm">
+                              Source
+                            </th>
+                            <th className="font-bold text-xs sm:text-sm">
+                              Questions
+                            </th>
+                            <th className="font-bold text-xs sm:text-sm">
+                              Human Mean
+                            </th>
+                            <th className="font-bold text-xs sm:text-sm">
+                              DelPy Mean
+                            </th>
+                            <th className="font-bold text-xs sm:text-sm">
+                              Difference
+                            </th>
+                            <th className="font-bold text-xs sm:text-sm">
+                              P-Value (Bootstrap)
+                            </th>
+                            <th className="font-bold text-xs sm:text-sm">
+                              P-Value (M-W)
+                            </th>
+                            <th className="font-bold text-xs sm:text-sm">
+                              Significant
+                            </th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                          {resultsData.map((row, index) => (
+                            <tr
+                              key={index}
+                              className={row.significant ? "active" : ""}
+                            >
+                              <td className="font-medium">
+                                <div>
+                                  <div className="font-semibold text-xs sm:text-sm">
+                                    {row.source_name}
+                                  </div>
+                                  <div className="text-xs text-base-content/60">
+                                    <a
+                                      href={`https://${row.source_url}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="link link-primary hover:link-hover"
+                                    >
+                                      {row.source_url}
+                                    </a>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="text-xs sm:text-sm">
+                                {row.human_count}
+                              </td>
+                              <td className="text-xs sm:text-sm">
+                                {row.human_mean.toFixed(4)}
+                              </td>
+                              <td className="text-xs sm:text-sm">
+                                {row.bot_mean.toFixed(4)}
+                              </td>
+                              <td
+                                className={`text-xs sm:text-sm ${
+                                  row.direction === "Bot better"
+                                    ? "text-success"
+                                    : "text-error"
+                                }`}
+                              >
+                                {row.difference > 0 ? "+" : ""}
+                                {row.difference.toFixed(4)}
+                              </td>
+                              <td className="text-xs sm:text-sm">
+                                {row.bootstrap_p.toFixed(4)}
+                              </td>
+                              <td className="text-xs sm:text-sm">
+                                {row.mann_whitney_p.toFixed(4)}
+                              </td>
+                              <td>
+                                {row.significant ? (
+                                  <svg
+                                    className="w-4 h-4 sm:w-5 sm:h-5 text-success"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
+                                      d="M5 13l4 4L19 7"
+                                    ></path>
+                                  </svg>
+                                ) : (
+                                  <svg
+                                    className="w-4 h-4 sm:w-5 sm:h-5 text-error"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
+                                      d="M6 18L18 6M6 6l12 12"
+                                    ></path>
+                                  </svg>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                  <div className="mt-6 text-sm text-base-content/70">
+                  <div className="mt-4 sm:mt-6 text-xs sm:text-sm text-base-content/70">
                     <p>
                       <strong>Note:</strong> Lower Brier scores indicate better
                       forecasting accuracy. Green differences show DelPy (our
@@ -380,11 +457,11 @@ export default function Results() {
           <div id="contact" className="py-16 sm:py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="card bg-base-200 shadow-xl">
-                <div className="card-body text-center">
-                  <h3 className="card-title text-2xl font-semibold mb-6 justify-center">
+                <div className="card-body text-center p-6 sm:p-8">
+                  <h3 className="card-title text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 justify-center">
                     Get in Touch
                   </h3>
-                  <p className="text-lg text-base-content/70 mb-6 max-w-2xl mx-auto">
+                  <p className="text-sm sm:text-lg text-base-content/70 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
                     Interested in learning more about DelPy, our AI forecasting
                     system, or collaborating on AI Safety research? We&apos;d
                     love to hear from you.
@@ -392,7 +469,7 @@ export default function Results() {
                   <div className="flex justify-center">
                     <a
                       href="mailto:delpy@forecastlabs.org"
-                      className="btn btn-primary btn-lg"
+                      className="btn btn-primary btn-lg w-full sm:w-auto"
                     >
                       Contact DelPy Team
                     </a>
