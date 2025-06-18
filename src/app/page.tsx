@@ -81,11 +81,11 @@ export default function Home() {
                 From Forecasting to Action
               </h2>
               <p className="text-lg text-base-content/70 mb-6">
-                Our advanced AI systems use causal Bayesian networks to
-                understand complex relationships and make accurate predictions
-                about critical events. By focusing on AI Safety, we&apos;re
-                working to reduce existential risks and ensure AI development
-                benefits all of humanity.
+                Our advanced AI systems use causal modelss to understand complex
+                relationships and make accurate predictions about critical
+                events. By focusing on AI Safety, we&apos;re working to reduce
+                existential risks and ensure AI development benefits all of
+                humanity.
               </p>
               <p className="text-lg text-base-content/70">
                 Every prediction we make is a step toward better decision-making
