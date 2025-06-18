@@ -4,13 +4,15 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const resultsData = [
-  { source: 'manifold', category: 'market', human_mean: 0.1343, bot_mean: 0.0823, difference: 0.0520, bootstrap_p: 0.4129, mann_whitney_p: 0.2648, significant: false, human_count: 22, bot_count: 22 },
-  { source: 'polymarket', category: 'market', human_mean: 0.0524, bot_mean: 0.1392, difference: -0.0868, bootstrap_p: 0.1811, mann_whitney_p: 0.5338, significant: false, human_count: 22, bot_count: 22 },
-  { source: 'acled', category: 'dataset', human_mean: 0.0354, bot_mean: 0.0492, difference: -0.0139, bootstrap_p: 0.5122, mann_whitney_p: 0.2484, significant: false, human_count: 88, bot_count: 88 },
-  { source: 'dbnomics', category: 'dataset', human_mean: 0.1191, bot_mean: 0.1680, difference: -0.0489, bootstrap_p: 0.0829, mann_whitney_p: 0.0436, significant: false, human_count: 72, bot_count: 72 },
-  { source: 'fred', category: 'dataset', human_mean: 0.1600, bot_mean: 0.1677, difference: -0.0077, bootstrap_p: 0.7749, mann_whitney_p: 0.0333, significant: false, human_count: 86, bot_count: 86 },
-  { source: 'wikipedia', category: 'dataset', human_mean: 0.0271, bot_mean: 0.0858, difference: -0.0587, bootstrap_p: 0.0190, mann_whitney_p: 0.2869, significant: true, human_count: 88, bot_count: 88 },
-  { source: 'yfinance', category: 'dataset', human_mean: 0.2554, bot_mean: 0.2272, difference: 0.0283, bootstrap_p: 0.0001, mann_whitney_p: 0.0002, significant: true, human_count: 88, bot_count: 88 },
+  { source: 'acled', source_name: 'ACLED', source_url: 'acleddata.com', human_mean: 0.0354, bot_mean: 0.0492, difference: -0.0139, bootstrap_p: 0.5225, mann_whitney_p: 0.2484, significant: false, direction: 'Human better', human_count: 88 },
+  { source: 'dbnomics', source_name: 'DBnomics', source_url: 'db.nomics.world', human_mean: 0.1191, bot_mean: 0.1680, difference: -0.0489, bootstrap_p: 0.0883, mann_whitney_p: 0.0436, significant: false, direction: 'Human better', human_count: 72 },
+  { source: 'fred', source_name: 'FRED Economic Data', source_url: 'fred.stlouisfed.org', human_mean: 0.1600, bot_mean: 0.1656, difference: -0.0057, bootstrap_p: 0.8338, mann_whitney_p: 0.0274, significant: false, direction: 'Human better', human_count: 86 },
+  { source: 'infer', source_name: 'RFI', source_url: 'randforecastinginitiative.org', human_mean: 0.0720, bot_mean: 0.0860, difference: -0.0140, bootstrap_p: 0.8467, mann_whitney_p: 0.0302, significant: false, direction: 'Human better', human_count: 11 },
+  { source: 'manifold', source_name: 'Manifold Markets', source_url: 'manifold.markets', human_mean: 0.1343, bot_mean: 0.0823, difference: 0.0520, bootstrap_p: 0.4099, mann_whitney_p: 0.2648, significant: false, direction: 'Bot better', human_count: 22 },
+  { source: 'metaculus', source_name: 'Metaculus', source_url: 'metaculus.com', human_mean: 0.0355, bot_mean: 0.0419, difference: -0.0064, bootstrap_p: 0.8147, mann_whitney_p: 0.6750, significant: false, direction: 'Human better', human_count: 20 },
+  { source: 'polymarket', source_name: 'Polymarket', source_url: 'polymarket.com', human_mean: 0.0524, bot_mean: 0.1392, difference: -0.0868, bootstrap_p: 0.1705, mann_whitney_p: 0.5338, significant: false, direction: 'Human better', human_count: 22 },
+  { source: 'wikipedia', source_name: 'Wikipedia', source_url: 'wikipedia.org', human_mean: 0.0271, bot_mean: 0.0858, difference: -0.0587, bootstrap_p: 0.0189, mann_whitney_p: 0.2869, significant: true, direction: 'Human better', human_count: 88 },
+  { source: 'yfinance', source_name: 'Yahoo! Finance', source_url: 'finance.yahoo.com', human_mean: 0.2554, bot_mean: 0.2272, difference: 0.0283, bootstrap_p: 0.0001, mann_whitney_p: 0.0002, significant: true, direction: 'Bot better', human_count: 88 },
 ];
 
 export default function Results() {
@@ -71,6 +73,14 @@ export default function Results() {
                   className={`text-left w-full p-2 rounded hover:bg-base-300 transition-colors ${activeSection === 'results' ? 'bg-base-300 text-primary' : ''}`}
                 >
                   Full Results
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('contact')}
+                  className={`text-left w-full p-2 rounded hover:bg-base-300 transition-colors ${activeSection === 'contact' ? 'bg-base-300 text-primary' : ''}`}
+                >
+                  Contact
                 </button>
               </li>
             </ul>
@@ -140,9 +150,9 @@ export default function Results() {
                       <thead>
                         <tr>
                           <th className="font-bold">Source</th>
-                          <th className="font-bold">Category</th>
+                          <th className="font-bold">Questions</th>
                           <th className="font-bold">Human Mean</th>
-                          <th className="font-bold">Bot Mean</th>
+                          <th className="font-bold">DelPy Mean</th>
                           <th className="font-bold">Difference</th>
                           <th className="font-bold">P-Value (Bootstrap)</th>
                           <th className="font-bold">P-Value (M-W)</th>
@@ -152,11 +162,16 @@ export default function Results() {
                       <tbody>
                         {resultsData.map((row, index) => (
                           <tr key={index} className={row.significant ? 'active' : ''}>
-                            <td className="font-medium">{row.source}</td>
-                            <td>{row.category}</td>
+                            <td className="font-medium">
+                              <div>
+                                <div className="font-semibold">{row.source_name}</div>
+                                <div className="text-sm text-base-content/60">{row.source_url}</div>
+                              </div>
+                            </td>
+                            <td>{row.human_count}</td>
                             <td>{row.human_mean.toFixed(4)}</td>
                             <td>{row.bot_mean.toFixed(4)}</td>
-                            <td className={row.difference > 0 ? 'text-error' : 'text-success'}>
+                            <td className={row.direction === 'Bot better' ? 'text-success' : 'text-error'}>
                               {row.difference > 0 ? '+' : ''}{row.difference.toFixed(4)}
                             </td>
                             <td>{row.bootstrap_p.toFixed(4)}</td>
@@ -179,7 +194,33 @@ export default function Results() {
                   </div>
                   <div className="mt-6 text-sm text-base-content/70">
                     <p><strong>Note:</strong> Lower Brier scores indicate better forecasting accuracy. 
-                    Negative differences show AI outperforming humans. Highlighted rows indicate statistically significant results.</p>
+                    Green differences show DelPy (our AI) outperforming humans, red shows humans performing better. 
+                    Highlighted rows indicate statistically significant results.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Section */}
+          <div id="contact" className="py-16 sm:py-24">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="card bg-base-200 shadow-xl">
+                <div className="card-body text-center">
+                  <h3 className="card-title text-2xl font-semibold mb-6 justify-center">
+                    Get in Touch
+                  </h3>
+                  <p className="text-lg text-base-content/70 mb-6 max-w-2xl mx-auto">
+                    Interested in learning more about DelPy, our AI forecasting system, or collaborating 
+                    on AI Safety research? We'd love to hear from you.
+                  </p>
+                  <div className="flex justify-center">
+                    <a 
+                      href="mailto:delpy@forecastlabs.org" 
+                      className="btn btn-primary btn-lg"
+                    >
+                      Contact DelPy Team
+                    </a>
                   </div>
                 </div>
               </div>

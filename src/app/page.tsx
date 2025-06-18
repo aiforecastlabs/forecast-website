@@ -69,15 +69,15 @@ export default function Home() {
                   <div className="stat-desc">Brier Score (Higher = Worse)</div>
                 </div>
                 <div className="stat">
-                  <div className="stat-title">AI Forecasters</div>
+                  <div className="stat-title">DelPy (Our AI)</div>
                   <div className="stat-value text-success">0.0823</div>
                   <div className="stat-desc">Brier Score (Lower = Better)</div>
                 </div>
               </div>
               
               <p className="text-base mt-6 text-base-content/70 max-w-2xl">
-                Our AI demonstrated significantly higher accuracy than human experts on Manifold Markets, 
-                with a 38% improvement in prediction accuracy. This represents a major step forward in AI-assisted decision making.
+                DelPy demonstrated significantly higher accuracy than human experts on Manifold Markets, 
+                with a 38% improvement in prediction accuracy. This represents a major step forward in AI-assisted decision making for AI Safety.
               </p>
             </div>
           </div>
@@ -133,6 +133,34 @@ export default function Home() {
                 <text x="120" y="175" textAnchor="middle" className="text-xs fill-current">Decision</text>
                 <text x="200" y="195" textAnchor="middle" className="text-xs fill-current">Outcome</text>
               </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Section */}
+      <div className="py-16 sm:py-24 bg-base-200/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="card bg-base-200 shadow-xl">
+            <div className="card-body text-center">
+              <h3 className="card-title text-2xl font-semibold mb-6 justify-center">
+                Ready to Explore AI Safety Forecasting?
+              </h3>
+              <p className="text-lg text-base-content/70 mb-6 max-w-2xl mx-auto">
+                Connect with our team to learn more about DelPy, our AI forecasting system, 
+                or discuss collaboration opportunities in AI Safety research.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/results" className="btn btn-primary btn-lg">
+                  View Full Results
+                </Link>
+                <a 
+                  href="mailto:delpy@forecastlabs.org" 
+                  className="btn btn-outline btn-primary btn-lg"
+                >
+                  Contact DelPy Team
+                </a>
+              </div>
             </div>
           </div>
         </div>
