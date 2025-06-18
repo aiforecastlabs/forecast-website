@@ -290,12 +290,6 @@ export default function Results() {
                   </p>
                   <ul className="list-disc list-inside space-y-2 sm:space-y-3 text-sm sm:text-base text-base-content/70">
                     <li>
-                      <strong>Questions:</strong> We use standardized
-                      forecasting questions from established benchmarks to
-                      ensure consistency and comparability across different
-                      forecasting methods.
-                    </li>
-                    <li>
                       <strong>Data Leakage Prevention:</strong> We strictly
                       limit data leakage by using models with training cutoffs
                       before forecast dates, and only allow access to articles
