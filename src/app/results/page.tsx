@@ -276,8 +276,7 @@ export default function Results() {
                     Our Experimental Framework
                   </h3>
                   <p className="text-sm sm:text-base lg:text-lg text-base-content/70 mb-4 sm:mb-6 leading-relaxed">
-                    Our methodology is based on rigorous experimental design
-                    principles, following the framework established by{" "}
+                    Our methodology uses questions from{" "}
                     <a
                       href="https://forecastbench.org"
                       className="link link-primary"
