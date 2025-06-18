@@ -332,6 +332,9 @@ export default function Results() {
                               Source
                             </th>
                             <th className="font-bold text-xs sm:text-sm">
+                              Winner
+                            </th>
+                            <th className="font-bold text-xs sm:text-sm">
                               Questions
                             </th>
                             <th className="font-bold text-xs sm:text-sm">
@@ -339,9 +342,6 @@ export default function Results() {
                             </th>
                             <th className="font-bold text-xs sm:text-sm">
                               DelPy Mean
-                            </th>
-                            <th className="font-bold text-xs sm:text-sm">
-                              Difference
                             </th>
                             <th className="font-bold text-xs sm:text-sm">
                               P-Value (Bootstrap)
@@ -377,6 +377,23 @@ export default function Results() {
                                   </div>
                                 </div>
                               </td>
+                              <td className="text-center">
+                                <div className="flex flex-col items-center gap-1">
+                                  <span className="text-lg">
+                                    {row.direction === "Bot better" ? "🤖" : "👨"}
+                                  </span>
+                                  <span
+                                    className={`text-xs sm:text-sm ${
+                                      row.direction === "Bot better"
+                                        ? "text-success"
+                                        : "text-error"
+                                    }`}
+                                  >
+                                    {row.difference > 0 ? "+" : ""}
+                                    {row.difference.toFixed(4)}
+                                  </span>
+                                </div>
+                              </td>
                               <td className="text-xs sm:text-sm">
                                 {row.human_count}
                               </td>
@@ -385,16 +402,6 @@ export default function Results() {
                               </td>
                               <td className="text-xs sm:text-sm">
                                 {row.bot_mean.toFixed(4)}
-                              </td>
-                              <td
-                                className={`text-xs sm:text-sm ${
-                                  row.direction === "Bot better"
-                                    ? "text-success"
-                                    : "text-error"
-                                }`}
-                              >
-                                {row.difference > 0 ? "+" : ""}
-                                {row.difference.toFixed(4)}
                               </td>
                               <td className="text-xs sm:text-sm">
                                 {row.bootstrap_p.toFixed(4)}
