@@ -276,7 +276,7 @@ export default function Results() {
                     Our Experimental Framework
                   </h3>
                   <p className="text-sm sm:text-base lg:text-lg text-base-content/70 mb-4 sm:mb-6 leading-relaxed">
-                    Our methodology uses questions from{" "}
+                    Our methodology uses questions / framework from{" "}
                     <a
                       href="https://forecastbench.org"
                       className="link link-primary"

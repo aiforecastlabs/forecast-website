@@ -15,14 +15,13 @@ export default function Home() {
           <div className="max-w-4xl">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
               <span className="bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">
-                Charting the Future of AI. Together.
+                There Is an Optimal Path. We Find It.
               </span>
             </h1>
             <p className="text-base sm:text-lg mt-4 sm:mt-6 text-base-content/70 max-w-3xl mx-auto leading-relaxed">
-              We build AI forecasters that rival the world&apos;s best experts,
-              helping reduce AI risk and improve critical decision-making. As a
-              nonprofit organization, our mission is to create a safer, more
-              prosperous future for humanity through better predictions.
+              We deploy elite forecasting agents with predictive power on par
+              with top human superforecasters, designed to discover and chart
+              the optimal course for a secure AI future.
             </p>
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
