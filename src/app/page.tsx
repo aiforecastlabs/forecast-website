@@ -1,102 +1,166 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-base-100">
+      {/* Navigation Bar */}
+      <div className="navbar bg-base-100/80 backdrop-blur-md sticky top-0 z-50 border-b border-base-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="navbar-start">
+            <Link href="/" className="btn btn-ghost text-2xl font-bold">
+              {/* Custom SVG Logo */}
+              <svg width="32" height="32" viewBox="0 0 32 32" className="mr-2">
+                <defs>
+                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="currentColor" stopOpacity="0.8"/>
+                    <stop offset="100%" stopColor="currentColor" stopOpacity="0.4"/>
+                  </linearGradient>
+                </defs>
+                {/* Forward-pointing arrow */}
+                <path d="M8 16 L20 8 L20 12 L28 12 L28 20 L20 20 L20 24 Z" fill="url(#logoGradient)"/>
+                {/* Stylized nodes */}
+                <circle cx="6" cy="10" r="2" fill="currentColor" opacity="0.6"/>
+                <circle cx="6" cy="22" r="2" fill="currentColor" opacity="0.6"/>
+                <circle cx="26" cy="16" r="2" fill="currentColor" opacity="0.8"/>
+                {/* Connecting lines */}
+                <line x1="8" y1="10" x2="18" y2="14" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+                <line x1="8" y1="22" x2="18" y2="18" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+              </svg>
+              Forecast Labs
+            </Link>
+          </div>
+          <div className="navbar-end">
+            <Link href="/" className="btn btn-ghost">
+              Home
+            </Link>
+            <Link href="/results" className="btn btn-ghost">
+              Results & Methodology
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </div>
+
+      {/* Hero Section */}
+      <div className="hero bg-base-100 min-h-screen">
+        <div className="hero-content text-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">
+                Charting the Future with AI. Together.
+              </span>
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-base-content/70 py-6 max-w-3xl mx-auto leading-relaxed">
+              Forecast Labs is a nonprofit organization building AI forecasters to help with AI Safety by creating 
+              the path most likely to reduce AI risk and allocating resources accordingly. We use causal Bayesian 
+              networks to chart a safer future for humanity through improved high-stakes decision-making.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 sm:mt-10">
+              <Link href="/results" className="btn btn-primary btn-lg w-full sm:w-auto">
+                Explore Our Results
+              </Link>
+              <Link href="/results" className="btn btn-outline btn-primary btn-lg w-full sm:w-auto">
+                Learn Our Methodology
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Key Result Showcase Section */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="card bg-base-200/50 shadow-xl w-full max-w-4xl mx-auto">
+            <div className="card-body items-center text-center">
+              <h3 className="card-title text-2xl font-semibold mb-6">
+                AI Forecasters Outperform on Prediction Markets
+              </h3>
+              
+              <div className="stats bg-transparent shadow-none">
+                <div className="stat">
+                  <div className="stat-title">Human Forecasters</div>
+                  <div className="stat-value text-error">0.1343</div>
+                  <div className="stat-desc">Brier Score (Higher = Worse)</div>
+                </div>
+                
+                <div className="stat">
+                  <div className="stat-title">AI Forecasters</div>
+                  <div className="stat-value text-success">0.0823</div>
+                  <div className="stat-desc">Brier Score (Lower = Better)</div>
+                </div>
+              </div>
+              
+              <p className="text-base text-base-content/70 mt-6 max-w-2xl">
+                Our AI demonstrated significantly higher accuracy in prediction market forecasting, 
+                outperforming human superforecasters with a lower Brier score across 22 matched questions 
+                from Manifold Markets data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works & Vision Section */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold tracking-tight mb-6">
+                From Forecasting to Action
+              </h2>
+              <p className="text-lg text-base-content/70 mb-6">
+                Our mission extends beyond accurate predictions. We're building AI systems focused on AI Safety—helping humanity navigate the path most likely to reduce AI risk and allocate resources accordingly.
+              </p>
+              <p className="text-lg text-base-content/70 mb-6">
+                By leveraging causal Bayesian networks, our AI doesn't just predict outcomes—it understands the underlying mechanisms that drive them, enabling more robust forecasting for critical AI safety decisions.
+              </p>
+              <p className="text-lg text-base-content/70">
+                Together, we can chart a safer future for humanity through improved decision-making powered by advanced AI forecasting focused on reducing existential risks.
+              </p>
+            </div>
+            
+            <div className="flex justify-center">
+              {/* Stylized SVG of causal graph */}
+              <svg width="300" height="300" viewBox="0 0 300 300" className="text-primary">
+                <defs>
+                  <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                   refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" />
+                  </marker>
+                </defs>
+                
+                {/* Nodes */}
+                <circle cx="75" cy="75" r="25" fill="currentColor" opacity="0.2" stroke="currentColor" strokeWidth="2"/>
+                <text x="75" y="80" textAnchor="middle" className="text-sm font-medium fill-current">Data</text>
+                
+                <circle cx="225" cy="75" r="25" fill="currentColor" opacity="0.2" stroke="currentColor" strokeWidth="2"/>
+                <text x="225" y="80" textAnchor="middle" className="text-sm font-medium fill-current">Model</text>
+                
+                <circle cx="75" cy="225" r="25" fill="currentColor" opacity="0.2" stroke="currentColor" strokeWidth="2"/>
+                <text x="75" y="230" textAnchor="middle" className="text-sm font-medium fill-current">Context</text>
+                
+                <circle cx="225" cy="225" r="25" fill="currentColor" opacity="0.2" stroke="currentColor" strokeWidth="2"/>
+                <text x="225" y="230" textAnchor="middle" className="text-sm font-medium fill-current">Forecast</text>
+                
+                <circle cx="150" cy="150" r="30" fill="currentColor" opacity="0.3" stroke="currentColor" strokeWidth="3"/>
+                <text x="150" y="155" textAnchor="middle" className="text-sm font-bold fill-current">Causal</text>
+                
+                {/* Edges */}
+                <line x1="100" y1="75" x2="200" y2="75" stroke="currentColor" strokeWidth="2" markerEnd="url(#arrowhead)"/>
+                <line x1="75" y1="100" x2="75" y2="200" stroke="currentColor" strokeWidth="2" markerEnd="url(#arrowhead)"/>
+                <line x1="100" y1="100" x2="125" y2="125" stroke="currentColor" strokeWidth="2" markerEnd="url(#arrowhead)"/>
+                <line x1="175" y1="125" x2="200" y2="200" stroke="currentColor" strokeWidth="2" markerEnd="url(#arrowhead)"/>
+                <line x1="100" y1="225" x2="200" y2="225" stroke="currentColor" strokeWidth="2" markerEnd="url(#arrowhead)"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer footer-center p-4 bg-base-300 text-base-content">
+        <div>
+          <p>© 2025 Forecast Labs. All Rights Reserved.</p>
+        </div>
       </footer>
     </div>
   );
