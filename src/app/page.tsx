@@ -21,7 +21,8 @@ export default function Home() {
             <p className="text-base sm:text-lg mt-4 sm:mt-6 text-base-content/70 max-w-3xl mx-auto leading-relaxed">
               We deploy elite forecasting agents with predictive power on par
               with top human superforecasters, designed to discover and chart
-              the optimal course for a secure AI future.
+              the optimal course for humanity to harness the benefits of AI and
+              reduce catastrophic risks.
             </p>
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
