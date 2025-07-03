@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci --coverage",
+    "prepare": "husky"
   },
   "dependencies": {
     "autoprefixer": "^10.4.21",
@@ -15,13 +19,22 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "daisyui": "^5.0.43",
     "eslint": "^8",
     "eslint-config-next": "15.3.4",
+    "husky": "^9.1.7",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
+    "lint-staged": "^16.1.2",
     "postcss": "^8",
+    "prettier": "^3.6.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
